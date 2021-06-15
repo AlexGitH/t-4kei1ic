@@ -1,0 +1,10 @@
+.eslint*
+.jsbeau*
+/tmp/
+Docs/*.pdf
+node_modules*
+/package-lock.json
+snippet*
+jsconfig.json
+*.swp
+*.code-workspace
