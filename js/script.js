@@ -73,11 +73,12 @@ function prepareHeaders( headers ) {
   const tr = document.createElement( 'tr' );
   const headerElements = headers.map( prop => {
     const th = document.createElement( 'th' );
+    // TODO: move to styles;
     th.innerHTML = `<span style="display:inline-block; width:20px;" class="sort-direction" ></span>${prop}`;
     th.style.textAlign ='left';
     th.addEventListener( 'click', ( (isDescSort=null) => e=>{
       isDescSort = !isDescSort;
-      const users = [...getUsers()].sort( getComparator( prop, isDescSort ) );
+      const users = getUsers().sort( getComparator( prop, isDescSort ) );
       setUsers( users );
       redrawUserList( headers, users );
       resetAllOrderSigns();
@@ -139,6 +140,7 @@ function makeButtonRemove( userId ) {
     e.stopPropagation(); 
     try {
       const id = await deleteUser( userId );
+      filterOutUser( id );
       console.log( 'user REMOVED: ', id );
       // TODO: filter out deleted user by id and redraw table
     }
@@ -149,6 +151,13 @@ function makeButtonRemove( userId ) {
   return button;
 }
 
+function filterOutUser( userId ) {
+  const users = getUsers().filter( ({id}) => userId !== id )
+  console.log('filterOutUser:', 'users:', users);
+  setUsers( users );
+  redrawUserList( columnHeaders, users )
+}
+
 {
   let users;
 
@@ -157,7 +166,7 @@ function makeButtonRemove( userId ) {
   }
 
   function getUsers() {
-    return users;
+    return [...users];
   }
 }
 
