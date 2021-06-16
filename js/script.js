@@ -124,9 +124,21 @@ function makeButtonRemove( userId ) {
   return button;
 }
 
+{
+  let users;
+
+  function setUsers( fetchedUsers ) {
+    users = fetchedUsers;
+  }
+
+  function getUsers() {
+    return users;
+  }
+}
+
 ( async(tableContainer) => {
-  const users = await fetchGet( USERS_URL );
-  renderTable( users );
+  setUsers( await fetchGet( USERS_URL ) );
+  renderTable( getUsers() );
   // tableContainer.innerHTML = `<table>
   //     <thead>
   //         <tr>
