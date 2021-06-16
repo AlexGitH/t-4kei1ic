@@ -67,6 +67,8 @@ function renderTable( users ) {
 // TODO: create userinfo modal
 function showUserInfo(user) {
   console.log('showUserInfo:', 'user:', user);
+  updateUserModal( user );
+  showUserInfoModal();
 }
 
 function prepareHeaders( headers ) {
@@ -189,25 +191,24 @@ function getComparator( propToCompare, isDesc=true ) {
 ( async(tableContainer) => {
   setUsers( await fetchGet( USERS_URL ) );
   renderTable( getUsers() );
-  // tableContainer.innerHTML = `<table>
-  //     <thead>
-  //         <tr>
-  //         ${columnHeaders.map( header=>`<th>${header}</th>`).join('')}
-  //         </tr>
-  //     </thead>
-  //     <tbody>
-  //         ${( await fetchGet( USERS_URL ) )
-  //           .map( user => `<tr>${columnHeaders
-  //             .map( prop =>`<td>${user[prop]}</td>`)
-  //             .join('')} <td><button onclick="console.log('delete');">X</button></td></tr>` )
-  //           .join('') }
-  //     </tbody>)
-  // </table>
-  // `
   return null;
 } )(tableContainer);
 
 window.onload = function() {
+  const { element, update } = createUserModalWindow()
+
+  document.body.insertBefore( element, document.body.firstChild );
+  window.userModal = element;
+  window.updateUserModal = update;
+
+
+  window.addEventListener( 'click', function(event) {
+    if (event.target == element) {
+      hideUserInfoModal();
+    }
+  })
+
+
   btnCreateUser.addEventListener( 'click', ()=>{
     createUser({
       name: 'Jane Doe',
