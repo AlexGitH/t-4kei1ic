@@ -83,7 +83,7 @@ function prepareHeaders( headers ) {
       const users = getUsers().sort( getComparator( prop, isDescSort ) );
       setUsers( users );
       redrawUserList( headers, users );
-      resetAllOrderSigns();
+      resetAllOrderDirectionMarks();
       th.firstChild.innerText = isDescSort ? '↓' : '↑';
       console.log( `sort data by column '${prop}' in ${isDescSort ? 'DESC': 'ASC'} order` );
     } )() )
@@ -94,12 +94,12 @@ function prepareHeaders( headers ) {
   return tr;
 }
 
-function resetAllOrderSigns() {
+function resetAllOrderDirectionMarks() {
   const headerCells = document.querySelector('#tableContainer>table>thead' ).firstChild.childNodes
-  headerCells.forEach( cleanupOrderSign )
+  headerCells.forEach( cleanupOrderDirectionMark )
 }
 
-function cleanupOrderSign( {firstChild}) {
+function cleanupOrderDirectionMark( {firstChild}) {
   if ( !firstChild ) return;
   firstChild.innerText = '';
 }
