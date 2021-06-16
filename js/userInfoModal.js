@@ -1,6 +1,6 @@
 function createUserModalWindow() {
   const modal = document.createElement( 'div' );
-  const modalContent = document.createElement( 'div' ); 
+  const modalContent = document.createElement( 'div' );
   const modalHeader = document.createElement( 'div' );
 
   const closeButton = document.createElement( 'span' );
@@ -33,7 +33,6 @@ function createUserModalWindow() {
   const update = user => {
     title.innerText = `${user.name}`
     const formatValue = ( format, value )=>typeof format === 'function' ? format(value) : value;
-    console.log('update:', 'fieldTitleMap:', fieldTitleMap);
     const rows = fieldTitleMap.map( ([key,title, formatFn])=>
                                         `<tr>
                                           <th>${title}:</th>
@@ -45,7 +44,7 @@ function createUserModalWindow() {
 
   return { element: modal, update };
 }
-  
+
 function showUserInfoModal() {
   const modal = document.getElementById('userInfoModal');
   modal.style.display = "block";
