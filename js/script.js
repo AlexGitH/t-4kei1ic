@@ -64,6 +64,7 @@ function renderTable( users ) {
   tableContainer.appendChild( table );
 }
 
+// TODO: create userinfo modal
 function showUserInfo(user) {
   console.log('showUserInfo:', 'user:', user);
 }
@@ -72,10 +73,15 @@ function prepareHeaders( headers ) {
   const tr = document.createElement( 'tr' );
   const headerElements = headers.map( prop => {
     const th = document.createElement( 'th' );
-    th.innerText = prop;
+    th.innerHTML = `<span style="display:inline-block; width:20px;" class="sort-direction" ></span>${prop}`;
     th.style.textAlign ='left';
     th.addEventListener( 'click', ( (isDescSort=null) => e=>{
       isDescSort = !isDescSort;
+      const users = [...getUsers()].sort( getComparator( prop, isDescSort ) );
+      setUsers( users );
+      redrawUserList( headers, users );
+      resetAllOrderSigns();
+      th.firstChild.innerText = isDescSort ? '↓' : '↑';
       console.log( `sort data by column '${prop}' in ${isDescSort ? 'DESC': 'ASC'} order` );
     } )() )
     return th;
@@ -83,6 +89,25 @@ function prepareHeaders( headers ) {
   const actionColumnHeader = document.createElement( 'th' );
   tr.append( ...headerElements, actionColumnHeader );
   return tr;
+}
+
+function resetAllOrderSigns() {
+  const headerCells = document.querySelector('#tableContainer>table>thead' ).firstChild.childNodes
+  headerCells.forEach( cleanupOrderSign )
+}
+
+function cleanupOrderSign( {firstChild}) {
+  if ( !firstChild ) return;
+  firstChild.innerText = '';
+}
+
+function redrawUserList( headers, users ) {
+  const tbody = document.querySelector('#tableContainer>table>tbody' );
+  while( tbody.hasChildNodes() ) {
+    tbody.removeChild(tbody.firstChild);
+  }
+  const rows = prepareRows( headers, users );
+  tbody.append( ...rows );
 }
 
 function prepareRows( headers, users ) {
@@ -134,6 +159,20 @@ function makeButtonRemove( userId ) {
   function getUsers() {
     return users;
   }
+}
+
+function compareDesc( a, b) {
+  return a > b ?  1 : 
+         a < b ? -1 : 0;
+}
+
+function compareAsc( a, b ) {
+  return compareDesc( b, a );
+}
+
+function getComparator( propToCompare, isDesc=true ) {
+  const comparator =  !isDesc ? compareAsc: compareDesc;
+  return (userA,userB)=>comparator( userA[propToCompare], userB[propToCompare] );
 }
 
 ( async(tableContainer) => {
