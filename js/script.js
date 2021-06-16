@@ -54,6 +54,7 @@ function renderTable( users ) {
   const thead = document.createElement( 'thead' );
   const tbody = document.createElement( 'tbody' );
   const table = document.createElement( 'table' );
+  table.className = 'user-list';
   thead.append( prepareHeaders( columnHeaders ) );
   tbody.append( ...prepareRows( columnHeaders, users ) );
   table.append( thead, tbody );
@@ -122,7 +123,9 @@ function prepareRows( headers, users ) {
     } );
 
     const btnRemove = makeButtonRemove( user.id );
-    tr.append( ...headers.map( makeCell( user ) ) , btnRemove );
+    const btnCell = document.createElement( 'td' );
+    btnCell.append( btnRemove );
+    tr.append( ...headers.map( makeCell( user ) ) , btnCell );
     return tr;
   })
 }
@@ -137,6 +140,7 @@ function makeCell( user ){
 
 function makeButtonRemove( userId ) {
   const button = document.createElement( 'button' );
+  button.className = 'btn-remove-user';
   button.innerHTML = '&times;';
   button.addEventListener( 'click', async e=>{
     e.stopPropagation(); 
