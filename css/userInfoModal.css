@@ -15,10 +15,11 @@
 
 .modal-content {
   position: relative;
-  background-color: #E1BEE7;
+  /* background-color: #E1BEE7; */
+  background-color: #bed1e7;
   margin: auto;
   padding: 0;
-  border: 2px solid #7B1FA2;
+  border: 2px solid #6f88a8;
   width: 50%;
   max-width: 600px;
   min-width: 300px;
@@ -31,7 +32,7 @@
 
 .modal-body table th {
   text-align: left;
-  min-width: 100px;
+  min-width: 120px;
 }
 
 .modal-body table td {
@@ -80,16 +81,12 @@
 
 .modal-header {
   padding: 2px 16px;
-  background-color: #9C27B0;
+  line-height: 40px;
+  background-color: #7995A4;
+  /* background-color: #9C27B0; */
   color: white;
 }
 
 .modal-body {
   padding: 2px 16px;
-}
-
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #9C27B0;
-  color: white;
 }
