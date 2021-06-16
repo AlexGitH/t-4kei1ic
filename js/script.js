@@ -135,16 +135,18 @@ function makeCell( user ){
 
 function makeButtonRemove( userId ) {
   const button = document.createElement( 'button' );
-  button.innerText = 'X';
+  button.innerHTML = '&times;';
   button.addEventListener( 'click', async e=>{
     e.stopPropagation(); 
     try {
+      button.setAttribute( 'disabled', true );
       const id = await deleteUser( userId );
       filterOutUser( id );
       console.log( 'user REMOVED: ', id );
       // TODO: filter out deleted user by id and redraw table
     }
     catch( e ){
+      button.removeAttribute( 'disabled' );
       throw e // show error popup
     };
   })
