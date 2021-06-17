@@ -11,17 +11,10 @@
   font-size: 20px;
 }
 
-/* input {
-  width: 170px;
-} */
-
 .setup input {
-  /* border: 1px solid #a2afb8; */
   border: 1px solid #444e55;
   line-height: 35px;
-  /* background-color: transparent; */
   background-color: whitesmoke;
-  /* color: white; */
   padding: 0 8px;
   font-weight: 300;
   font-family: 'Titillium Web', Arial, sans-serif;
@@ -61,11 +54,11 @@
 .create-user-buttons button:disabled {
   cursor: not-allowed;
   color : gray;
-  background-color: #bde7dc; /* Green */
+  background-color: #bde7dc;
 }
 
 .create-user-buttons button:hover {
-  background-color: #0cd6a0; /* Green */
+  background-color: #0cd6a0;
 }
 
 .create-user-error ul>li {
