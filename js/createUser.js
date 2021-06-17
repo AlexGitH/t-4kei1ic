@@ -44,7 +44,6 @@ async function onValidateAndCreateUser() {
   try {
     lockUserCreationControls();
     const newUser = await createUser( userData );
-    console.log('onValidateAndCreateUser:', 'newUser:', newUser);
     addNewUser( newUser );
     hideCreateUserModal();
   }
@@ -54,12 +53,9 @@ async function onValidateAndCreateUser() {
   finally{
     unlockUserCreationControls();
   }
-
-  console.log('onValidateAndCreateUser:', 'errors:', errors);
 }
 
 function onCancelUserCreation(){
-  console.log('onCancelUserCreation:', 'arguments:', arguments);
   hideCreateUserModal();
 }
 
@@ -78,7 +74,6 @@ function hideCreateUserModal() {
 
 function closeCreateUserModal( ) {
   hideCreateUserModal();
-  console.log( 'userModal' );
 }
 
 function unlockUserCreationControls(){
