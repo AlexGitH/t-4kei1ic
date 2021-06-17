@@ -65,9 +65,7 @@ function renderTable( users ) {
   tableContainer.appendChild( table );
 }
 
-// TODO: create userinfo modal
 function showUserInfo(user) {
-  console.log('showUserInfo:', 'user:', user);
   updateUserModal( user );
   showUserInfoModal();
 }
@@ -76,7 +74,6 @@ function prepareHeaders( headers ) {
   const tr = document.createElement( 'tr' );
   const headerElements = headers.map( prop => {
     const th = document.createElement( 'th' );
-    // TODO: move to styles;
     th.innerHTML = `<span style="display:inline-block; width:20px;" class="sort-direction" ></span>${prop}`;
     th.style.textAlign ='left';
     th.addEventListener( 'click', ( (isDescSort=null) => e=>{
@@ -86,7 +83,6 @@ function prepareHeaders( headers ) {
       redrawUserList( headers, users );
       resetAllOrderDirectionMarks();
       th.firstChild.innerText = isDescSort ? '↓' : '↑';
-      console.log( `sort data by column '${prop}' in ${isDescSort ? 'DESC': 'ASC'} order` );
     } )() )
     return th;
   } );
@@ -148,8 +144,6 @@ function makeButtonRemove( userId ) {
       button.setAttribute( 'disabled', true );
       const id = await deleteUser( userId );
       filterOutUser( id );
-      console.log( 'user REMOVED: ', id );
-      // TODO: filter out deleted user by id and redraw table
     }
     catch( e ){
       button.removeAttribute( 'disabled' );
@@ -161,7 +155,6 @@ function makeButtonRemove( userId ) {
 
 function filterOutUser( userId ) {
   const users = getUsers().filter( ({id}) => userId !== id )
-  console.log('filterOutUser:', 'users:', users);
   setUsers( users );
   redrawUserList( columnHeaders, users )
 }
@@ -169,7 +162,6 @@ function filterOutUser( userId ) {
 function addNewUser( user ) {
   const newUsers = [...getUsers(), user ];
   setUsers( newUsers )
-  console.log('addNewUser:', 'users:', newUsers);
   redrawUserList( columnHeaders, newUsers  )
 }
 
@@ -218,8 +210,6 @@ window.onload = function() {
       hideUserInfoModal();
     }
   })
-
-  document.querySelector('#userCreateModal')
 
 }
 
