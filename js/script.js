@@ -166,6 +166,13 @@ function filterOutUser( userId ) {
   redrawUserList( columnHeaders, users )
 }
 
+function addNewUser( user ) {
+  const newUsers = [...getUsers(), user ];
+  setUsers( newUsers )
+  console.log('addNewUser:', 'users:', newUsers);
+  redrawUserList( columnHeaders, newUsers  )
+}
+
 {
   let users;
 
@@ -212,43 +219,7 @@ window.onload = function() {
     }
   })
 
+  document.querySelector('#userCreateModal')
 
-  btnCreateUser.addEventListener( 'click', ()=>{
-    createUser({
-      name: 'Jane Doe',
-      username: 'janedoe21',
-      email : 'janedoe@test.com',
-      website : 'http://janedoe.testdomain.com',
-    //   "address": {
-    //   "street": "Kulas Light",
-    //   "suite": "Apt. 556",
-    //   "city": "Gwenborough",
-    //   "zipcode": "92998-3874",
-    //   "geo": {
-    //     "lat": "-37.3159",
-    //     "lng": "81.1496"
-    //   }
-    // },
-    // "phone": "1-770-736-8031 x56442",
-    });
-
-    // createUser({
-    //   name: 'Jane Doe',
-    //   username: 'janedoe21',
-    //   email : 'janedoe@test.com',
-    //   website : 'http://janedoe.testdomain.com',
-    //   "address": {
-    //   "street": "Kulas Light",
-    //   "suite": "Apt. 556",
-    //   "city": "Gwenborough",
-    //   "zipcode": "92998-3874",
-    //   "geo": {
-    //     "lat": "-37.3159",
-    //     "lng": "81.1496"
-    //   }
-    // },
-    // "phone": "1-770-736-8031 x56442",
-    // });
-  } )
 }
 
