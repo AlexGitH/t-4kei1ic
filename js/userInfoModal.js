@@ -24,7 +24,6 @@ function createUserModalWindow() {
     const lat = geo?.lat || '';
     const lng = geo?.lng || '';
     const address = [ zipcode, city, street, suite, lat, lng ].filter( value=> value !== '' ).join( ', ')
-    console.log('formatAddress:', 'address:', address);
     return address;
   }
 
