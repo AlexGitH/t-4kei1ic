@@ -15,7 +15,6 @@
 
 .modal-content {
   position: relative;
-  /* background-color: #E1BEE7; */
   background-color: #bed1e7;
   margin: auto;
   padding: 0;
@@ -36,7 +35,6 @@
 }
 
 .modal-body table td {
-  /* overflow: hidden; */
   overflow-wrap: anywhere;
 }
 
@@ -64,7 +62,6 @@
   }
 }
 
-
 .close {
   color: white;
   float: right;
@@ -83,7 +80,6 @@
   padding: 2px 16px;
   line-height: 40px;
   background-color: #7995A4;
-  /* background-color: #9C27B0; */
   color: white;
 }
 
