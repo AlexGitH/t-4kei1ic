@@ -20,14 +20,21 @@ function createUserModalWindow() {
   modalHeader.append( closeButton, title );
   modalContent.append( modalHeader, modalBody);
   modal.append( modalContent );
-  
+  const formatAddress = ( {zipcode, city, street, suite, geo } )=>{
+    const lat = geo?.lat || '';
+    const lng = geo?.lng || '';
+    const address = [ zipcode, city, street, suite, lat, lng ].filter( value=> value !== '' ).join( ', ')
+    console.log('formatAddress:', 'address:', address);
+    return address;
+  }
+
   const fieldTitleMap = [
     ['username', 'User name'],
     ['email', 'Email'],
     ['website','Website'],
     ['phone', 'Phone'],
-    ['address', 'Address', ( {zipcode, city, street, suite, geo:{lat,lng} } )=>`${zipcode}, ${city}, ${street}, ${suite}, (${lat}, ${lng})` ],
-    ['company', 'Company', ( {name} ) => name ],
+    ['address', 'Address', formatAddress ],
+    ['company', 'Company', ( company ) => `${company?.name||''}` ],
   ]
 
   const update = user => {
