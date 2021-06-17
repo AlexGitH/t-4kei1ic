@@ -8,14 +8,42 @@
     <title>User List</title>
     <link rel="stylesheet" href="./css/userInfoModal.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/createUser.css">
 </head>
 
 <body>
 
     <div id="tableContainer"></div>
-    <button id="btnCreateUser">Create user</button>
+    <button id="createUserBtn" onclick="showCreateUserModal()">Create User</button>
 
+    <div id="userCreateModal" class="modal">
+
+        <div class="modal-content">
+            <div class="modal-header"><span onclick="closeCreateUserModal()" class="close">×</span>
+                <h2>Create User</h2>
+            </div>
+            <div class="modal-body">
+              
+            <div class="setup">
+                <div>Name*:</div>       <input text" id="fldName"     >
+                <div>Username*:</div>   <input text" id="fldUserName" >
+                <div>Email*:</div>      <input text" id="fldEmail"    >
+                <div>Website*:</div>    <input text" id="fldWebsite"  >
+                <div>Phone:</div>       <input text" id="fldPhone"     >
+                <div>Zip code:</div>    <input text" id="fldZipcode"   >
+                <div>City:</div>        <input text" id="fldCity"      >
+                <div>Street:</div>      <input text" id="fldStreet"    >
+                <div>Suite:</div>       <input text" id="fldSuite"     >
+            </div>
+            <div id="userCreateError" class="create-user-error"></div>
+            <div class="create-user-buttons">
+                <button id="userCreateBtn" onclick='onValidateAndCreateUser();'>Create</button>
+                <button id="userCancelBtn" onclick='onCancelUserCreation();'>Cancel</button>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="./js/userInfoModal.js"></script>
 <script src="./js/script.js"></script>
+<script src="./js/createUser.js"></script>
 </html>
